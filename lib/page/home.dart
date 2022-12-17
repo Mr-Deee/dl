@@ -18,20 +18,25 @@ class _homeState extends State<home> {
 
   bool isLoading = false;
   bool? isDowloanding;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.black,
-          title: const Text('DL Downloader',style: TextStyle(color:Colors.white),),
+          title: const Text(
+            'DL Downloader',
+            style: TextStyle(color: Colors.white),
+          ),
           centerTitle: true,
         ),
         body: Container(
-    decoration: BoxDecoration(
-    image: DecorationImage(
-    image: AssetImage("assets/bg.jpg"),
-    fit: BoxFit.cover,
-    ),),
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/images/backdrop.jpg"),
+              fit: BoxFit.cover,
+            ),
+          ),
           child: SafeArea(
             child: Form(
               key: _globalKey,
@@ -61,8 +66,10 @@ class _homeState extends State<home> {
                     ),
                   ),
                   ElevatedButton(
-                    style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
-                      onPressed: fieldValidate, child: const Text('Download')),
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.black),
+                      onPressed: fieldValidate,
+                      child: const Text('Download')),
                   if (isLoading) const CircularProgressIndicator(),
                 ],
               ),
@@ -70,7 +77,6 @@ class _homeState extends State<home> {
           ),
         ));
   }
-
 
   void fieldValidate() {
     if (_globalKey.currentState!.validate()) {
@@ -90,87 +96,87 @@ class _homeState extends State<home> {
     showModalBottomSheet(
         context: context,
         builder: (context) => MyBottomSheet(
-          imageUrl: data['image'].toString(),
-          title: data['title'],
-          author: data["author"],
-          duration: data['duration'].toString(),
-          mp3Size: data['mp3'],
-          mp4Size: data['mp4'],
-          mp3Method: () async {
-            setState(() {
-              isDowloanding = true;
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                  behavior: SnackBarBehavior.floating,
-                  duration: const Duration(seconds: 2),
-                  content: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: const [
-                      Icon(
-                        Icons.download,
-                        color: Colors.white,
-                        size: 30,
-                      ),
-                      Text('  Audio Started Downloading')
-                    ],
-                  )));
-            });
-            await downloaderHelper.downloadMp3(data['id'], data['title']);
-            setState(() {
-              isDowloanding = false;
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                  behavior: SnackBarBehavior.floating,
-                  duration: const Duration(seconds: 2),
-                  content: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: const [
-                      Icon(
-                        Icons.download_done,
-                        color: Colors.green,
-                        size: 30,
-                      ),
-                      Text('  Audio Downloaded')
-                    ],
-                  )));
-            });
-          },
-          isDownloading: isDowloanding,
-          mp4Method: () async {
-            setState(() {
-              isDowloanding = true;
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                  behavior: SnackBarBehavior.floating,
-                  duration: const Duration(seconds: 2),
-                  content: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: const [
-                      Icon(
-                        Icons.download,
-                        color: Colors.white,
-                        size: 30,
-                      ),
-                      Text('  Video Started Downloading')
-                    ],
-                  )));
-            });
-            await downloaderHelper.downloadMp4(data['id'], data['title']);
-            setState(() {
-              isDowloanding = false;
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                  behavior: SnackBarBehavior.floating,
-                  duration: const Duration(seconds: 2),
-                  content: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: const [
-                      Icon(
-                        Icons.download_done,
-                        color: Colors.green,
-                        size: 30,
-                      ),
-                      Text('  Video Downloaded')
-                    ],
-                  )));
-            });
-          },
-        ));
+              imageUrl: data['image'].toString(),
+              title: data['title'],
+              author: data["author"],
+              duration: data['duration'].toString(),
+              mp3Size: data['mp3'],
+              mp4Size: data['mp4'],
+              mp3Method: () async {
+                setState(() {
+                  isDowloanding = true;
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      behavior: SnackBarBehavior.floating,
+                      duration: const Duration(seconds: 2),
+                      content: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: const [
+                          Icon(
+                            Icons.download,
+                            color: Colors.white,
+                            size: 30,
+                          ),
+                          Text('  Audio Started Downloading')
+                        ],
+                      )));
+                });
+                await downloaderHelper.downloadMp3(data['id'], data['title']);
+                setState(() {
+                  isDowloanding = false;
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      behavior: SnackBarBehavior.floating,
+                      duration: const Duration(seconds: 2),
+                      content: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: const [
+                          Icon(
+                            Icons.download_done,
+                            color: Colors.green,
+                            size: 30,
+                          ),
+                          Text('  Audio Downloaded')
+                        ],
+                      )));
+                });
+              },
+              isDownloading: isDowloanding,
+              mp4Method: () async {
+                setState(() {
+                  isDowloanding = true;
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      behavior: SnackBarBehavior.floating,
+                      duration: const Duration(seconds: 2),
+                      content: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: const [
+                          Icon(
+                            Icons.download,
+                            color: Colors.white,
+                            size: 30,
+                          ),
+                          Text('  Video Started Downloading')
+                        ],
+                      )));
+                });
+                await downloaderHelper.downloadMp4(data['id'], data['title']);
+                setState(() {
+                  isDowloanding = false;
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      behavior: SnackBarBehavior.floating,
+                      duration: const Duration(seconds: 2),
+                      content: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: const [
+                          Icon(
+                            Icons.download_done,
+                            color: Colors.green,
+                            size: 30,
+                          ),
+                          Text('  Video Downloaded')
+                        ],
+                      )));
+                });
+              },
+            ));
   }
 }
