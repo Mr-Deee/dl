@@ -26,39 +26,46 @@ class _homeState extends State<home> {
           title: const Text('DL Downloader',style: TextStyle(color:Colors.white),),
           centerTitle: true,
         ),
-        body: SafeArea(
-          child: Form(
-            key: _globalKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(30.0),
-                  child: InputField(
-                    title: "DL Video URL",
-                    hint: "Enter url here",
-                    fieldController: textEditingController,
-                    onFieldSubmitted: (value) {
-                      print(value);
-                      fieldValidate();
-                    },
-                    validatior: (value) {
-                      if (textEditingController.text.isEmpty) {
-                        return "Enter a URL first !";
-                      }
-                      String y1 = "youtu.be";
-                      String y2 = "youtube.com";
-                      if (!textEditingController.text.contains("youtu")) {
-                        return "Enter a YouTube URL !";
-                      }
-                    },
+        body: Container(
+    decoration: BoxDecoration(
+    image: DecorationImage(
+    image: AssetImage("assets/bg.jpg"),
+    fit: BoxFit.cover,
+    ),),
+          child: SafeArea(
+            child: Form(
+              key: _globalKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(30.0),
+                    child: InputField(
+                      title: "DL Video URL",
+                      hint: "Enter url here",
+                      fieldController: textEditingController,
+                      onFieldSubmitted: (value) {
+                        print(value);
+                        fieldValidate();
+                      },
+                      validatior: (value) {
+                        if (textEditingController.text.isEmpty) {
+                          return "Enter a URL first !";
+                        }
+                        String y1 = "youtu.be";
+                        String y2 = "youtube.com";
+                        if (!textEditingController.text.contains("youtu")) {
+                          return "Enter a YouTube URL !";
+                        }
+                      },
+                    ),
                   ),
-                ),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
-                    onPressed: fieldValidate, child: const Text('Download')),
-                if (isLoading) const CircularProgressIndicator(),
-              ],
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
+                      onPressed: fieldValidate, child: const Text('Download')),
+                  if (isLoading) const CircularProgressIndicator(),
+                ],
+              ),
             ),
           ),
         ));
