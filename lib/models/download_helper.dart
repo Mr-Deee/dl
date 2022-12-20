@@ -168,7 +168,7 @@ class DownloaderHelper {
     if (await status.isDenied) {
       Permission.manageExternalStorage.request();
     }
-    String name = "yt-downloader";
+    String name = "dl-downloader";
     final path = Directory("/storage/emulated/0/$name");
     if (await path.exists()) {
       print(path.path);

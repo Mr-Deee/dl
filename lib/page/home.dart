@@ -22,8 +22,8 @@ class _homeState extends State<home> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.red,
-          title: const Text('Youtube Downloader'),
+          backgroundColor: Colors.black,
+          title: const Text('DL Downloader',style: TextStyle(color:Colors.white),),
           centerTitle: true,
         ),
         body: SafeArea(
@@ -32,26 +32,30 @@ class _homeState extends State<home> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                InputField(
-                  title: "YT Video URL",
-                  hint: "enter url here",
-                  fieldController: textEditingController,
-                  onFieldSubmitted: (value) {
-                    print(value);
-                    fieldValidate();
-                  },
-                  validatior: (value) {
-                    if (textEditingController.text.isEmpty) {
-                      return "Enter a URL first !";
-                    }
-                    String y1 = "youtu.be";
-                    String y2 = "youtube.com";
-                    if (!textEditingController.text.contains("youtu")) {
-                      return "Enter a YouTube URL !";
-                    }
-                  },
+                Padding(
+                  padding: const EdgeInsets.all(30.0),
+                  child: InputField(
+                    title: "DL Video URL",
+                    hint: "Enter url here",
+                    fieldController: textEditingController,
+                    onFieldSubmitted: (value) {
+                      print(value);
+                      fieldValidate();
+                    },
+                    validatior: (value) {
+                      if (textEditingController.text.isEmpty) {
+                        return "Enter a URL first !";
+                      }
+                      String y1 = "youtu.be";
+                      String y2 = "youtube.com";
+                      if (!textEditingController.text.contains("youtu")) {
+                        return "Enter a YouTube URL !";
+                      }
+                    },
+                  ),
                 ),
                 ElevatedButton(
+                  style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
                     onPressed: fieldValidate, child: const Text('Download')),
                 if (isLoading) const CircularProgressIndicator(),
               ],
